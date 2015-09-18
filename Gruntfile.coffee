@@ -1,3 +1,5 @@
+path = require('path')
+
 module.exports = (grunt) ->
 
 	require("load-grunt-tasks") grunt
@@ -15,6 +17,7 @@ module.exports = (grunt) ->
 			all:
 				options:
 					style: 'compressed'
+					includePaths: [ path.join(__dirname, 'node_modules') ]
 				files:
 					'dist/assets/style.css': 'app/assets/style.scss'
 		imagemin:
