@@ -1,9 +1,9 @@
-@import '../../node_modules/normalize-css/normalize.css';
+@import 'normalize.scss/normalize';
 
 %flexCenter{display:flex;justify-content:space-between;align-items:center;}
 %svg{width:10px;display: inline-block;vertical-align: middle}
 
-body{box-sizing: border-box;font-family: Arial;width:50%;margin: 20px auto;}
+body{box-sizing: border-box;font-family: Arial;width:50%;margin: 20px auto;font-size: 1.3vw;}
 body *{box-sizing: inherit}
 
 
@@ -13,35 +13,35 @@ body *{box-sizing: inherit}
 	button{background:none;border:none;padding:0;margin:0;}
 	
 	header{@extend %flexCenter;background: linear-gradient(90deg, #EAEAD0, #C7C6A6);padding:10px 20px;}
-	header h1{font-size:14px;}
+	header h1{font-size: 1.4vw;}
 
-	section{position:relative;width:100%;height:250px;max-height: 250px;transition:all .2s ease-in-out;overflow:hidden;border:1px solid #ccc;border-top:0}
-	ul{list-style:none;margin:0;padding:0;position:absolute;width:100%;height:100%;display:block;left:0;transition:all .2s ease-in-out;}
+	section{position:relative;width:100%;max-height:1000px;transition:all .2s ease-in-out;overflow:hidden;border:1px solid #ccc;border-top:0}
+	ul{list-style:none;margin:0;padding:0;width:100%;display:flex;transition:all .2s ease-in-out;}
 
-	li{width:100%;height:100%;position:absolute;top:0;padding:20px;font-size:13px;display:flex}
-	figure{display:block;padding-right:20px;max-width: 30%;}
+	li{width:100%;padding:20px;display:flex; flex: 1 0 100%;align-items: center;}
+	figure{display:block;padding-right:20px;max-width: 30%;margin:0}
 	figure img{width:100%}
 	p{display:block}
 	
-	footer{position: absolute;bottom:0; right:0; left:0;height:50px;@extend %flexCenter;padding: 20px;background:white;border-top:#E6E7DF 1px solid;}
+	footer{@extend %flexCenter;padding: 20px;background:white;border-top:#E6E7DF 1px solid;}
 	footer .button_wrapper{}
 	
 	// SVG
-	.icon_doc{@extend %svg;}
+	.icon_doc{@extend %svg;margin-right: 5px}
 	.icon_collapse{@extend %svg;}
-	.icon_left{@extend %svg;}
-	.icon_right{@extend %svg;}
+	.icon_left{@extend %svg;margin-right: 5px}
+	.icon_right{@extend %svg;margin-left: 5px}
 	.icon_alignedlabel{vertical-align: middle}
 
 	// Sliding
 	@for $i from 0 through 9{
-		li:nth-child(#{$i+1}){left:$i * 100%}
-		&[data-slide="#{$i}"] ul{left:-$i * 100%;}
+		// li:nth-child(#{$i+1}){transform:translateX($i * 100%)}
+		&[data-slide="#{$i}"] ul{transform:translateX(-$i * 100%)}
 	}
 	
 	// Collapsing
 	&[data-collapsed="true"]{
-		section{max-height:0}
+		section{max-height:0;}
 		.icon_collapse{transform: rotate(180deg)}
 	}
 	
